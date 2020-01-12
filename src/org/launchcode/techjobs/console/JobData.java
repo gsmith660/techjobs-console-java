@@ -62,7 +62,7 @@ public class JobData {
      * with "Enterprise Holdings, Inc".
      *
      * @param column   Column that should be searched.
-     * @param value Value of teh field to search for
+     * @param value Value of the field to search for
      * @return List of all jobs matching the criteria
      */
     public static ArrayList<HashMap<String, String>> findByColumnAndValue(String column, String value) {
@@ -83,6 +83,36 @@ public class JobData {
 
         return jobs;
     }
+
+    /**
+     * Returns results of searching all columns of the jobs data
+     * by value, using inclusion of the search term.
+     *
+     * For example, searching for employer "Enterprise" will include results
+     * with "Enterprise Holdings, Inc".
+     *
+     * @param value Value of the field to search for
+     * @return List of all jobs matching the criteria
+     */
+    public static ArrayList<HashMap<String, String>> findByValue(String value) {
+
+        // load data, if not already loaded
+        loadData();
+
+        ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
+
+        for (HashMap<String, String> row : allJobs) {
+            for(HashMap.Entry<String, String> cellOfRow : row.entrySet()) {
+                if (cellOfRow.getValue().contains(value)) {
+                    jobs.add(row);
+                    break;
+                }
+            }
+        }
+
+        return jobs;
+    }
+
 
     /**
      * Read in data from a CSV file and store it in a list
