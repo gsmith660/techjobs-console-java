@@ -36,7 +36,12 @@ public class TechJobs {
                 String columnChoice = getUserSelection("List", columnChoices);
 
                 if (columnChoice.equals("all")) {
+                    ArrayList<HashMap<String, String>> data = JobData.findAll();
+                    HashMap<String, String> junkData = new HashMap<>();
+                    junkData.put("alt col", "Not a real job %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+                    data.add(junkData);
                     printJobs(JobData.findAll());
+
                 } else {
 
                     ArrayList<String> results = JobData.findAll(columnChoice);
