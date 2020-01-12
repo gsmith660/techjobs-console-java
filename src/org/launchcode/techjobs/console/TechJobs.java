@@ -36,10 +36,6 @@ public class TechJobs {
                 String columnChoice = getUserSelection("List", columnChoices);
 
                 if (columnChoice.equals("all")) {
-                    ArrayList<HashMap<String, String>> data = JobData.findAll();
-                    HashMap<String, String> junkData = new HashMap<>();
-                    junkData.put("alt col", "Not a real job %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-                    data.add(junkData);
                     printJobs(JobData.findAll());
 
                 } else {
@@ -65,7 +61,6 @@ public class TechJobs {
                 String searchTerm = in.nextLine();
 
                 if (searchField.equals("all")) {
-                    // System.out.println("Search all fields not yet implemented.");
                     printJobs(JobData.findByValue(searchTerm));
                 } else {
                     printJobs(JobData.findByColumnAndValue(searchField, searchTerm));
